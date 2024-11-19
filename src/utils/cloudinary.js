@@ -15,7 +15,7 @@ import fs from 'fs';
                 resource_type:'auto'
             });
             //File uploaded Successfully on cloudinary  
-            console.log("File Uploaded Successfully on cloudinary: ", response.url)
+            fs.unlinkSync(localFilePath)
             return response;
         } catch (error) {
             fs.unlinkSync(localFilePath)  //Remove The locally saved Temp file as the Upload option failed
