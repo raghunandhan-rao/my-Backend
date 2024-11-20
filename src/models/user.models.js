@@ -5,7 +5,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      requried: true,
+      required: true,
       unique: true,
       lowercase: true,
       trim: true,
@@ -13,20 +13,20 @@ const userSchema = new Schema(
     },
     fullname: {
       type: String,
-      requried: true,
+      required: true,
       trim: true,
       index: true,
     },
     email: {
       type: String,
-      requried: true,
+      required: true,
       unique: true,
       lowercase: true,
       trim: true,
     },
     avatar: {
       type: String, //Cloudinary Url
-      requried: true,
+      required: true,
     },
     coverImage: {
       type: String, //Cloudinary Url
@@ -39,7 +39,7 @@ const userSchema = new Schema(
     ],
     password: {
       type: String,
-      requried: [true, "Password Is Requried"],
+      required: [true, "Password Is required"],
     },
     refreshTokens: {
       type: String,
@@ -54,10 +54,10 @@ userSchema.pre("save", async function (next) {
         this.password =await bcrypt.hash(this.password, 10);
         next();
 });
-userSchema.methods.IsPasswordCorrect=async function (password){
+userSchema.methods.isPasswordCorrect=async function (password){
     return await bcrypt.compare(password,this.password)
 }
-userSchema.methods.GenerateAccessToken=function (){
+userSchema.methods.generateAccessToken=function (){
     return jwt.sign({
        _id:this._id,
        email:this.email,
@@ -70,7 +70,7 @@ userSchema.methods.GenerateAccessToken=function (){
     }
 )
 }
-userSchema.methods.GenerateRefreshToken=function (){
+userSchema.methods.generateRefreshToken=function (){
     return jwt.sign({
         _id:this._id,
         email:this.email,

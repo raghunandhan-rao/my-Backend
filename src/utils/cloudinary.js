@@ -8,7 +8,7 @@ import fs from 'fs';
     });
     
     // Function to upload an image to Cloudinary
-    const UploadImageOnCloudinary=async (localFilePath)=>{
+    const uploadImageOnCloudinary=async (localFilePath)=>{
         try {
             if(!localFilePath) return null;
             const response = await cloudinary.uploader.upload(localFilePath,{
@@ -22,4 +22,4 @@ import fs from 'fs';
             return null
         }
     }
-export { UploadImageOnCloudinary};
+export { uploadImageOnCloudinary};
